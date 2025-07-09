@@ -58,9 +58,7 @@ export function MDXRemote<TScope, TFrontmatter>({
   components = {},
   lazy,
 }: MDXRemoteProps<TScope, TFrontmatter>) {
-  const [isReadyToRender, setIsReadyToRender] = useState(
-    !lazy || typeof window === 'undefined'
-  )
+  const [isReadyToRender, setIsReadyToRender] = useState(true)
 
   // if we're on the client side and `lazy` is set to true, we hydrate the
   // mdx content inside requestIdleCallback, allowing the page to get to
