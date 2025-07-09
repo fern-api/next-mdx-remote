@@ -36,7 +36,7 @@ jobs:
       - name: Version
         run: npx changeset version --snapshot canary
         env:
-          GITHUB_TOKEN: ${{ secrets.CHANGESETS_PAT }}
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
 
       - name: Publish Canary Packages
         id: changesets
@@ -46,7 +46,7 @@ jobs:
           publish: npm run release:canary
           createGithubReleases: false
         env:
-          GITHUB_TOKEN: ${{ secrets.CHANGESETS_PAT }}
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Compute new packages info
