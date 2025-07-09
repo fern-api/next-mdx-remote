@@ -1,5 +1,5 @@
 {
-  "name": "next-mdx-remote",
+  "name": "@fern-api/next-mdx-remote",
   "description": "utilities for loading mdx from any remote source as data, rather than as a local import",
   "version": "5.0.0",
   "author": "Jeff Escalante",
