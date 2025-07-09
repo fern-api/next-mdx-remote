@@ -7,7 +7,26 @@ on:
 
 jobs:
   release:
-    uses: hashicorp/web-platform-packages/.github/workflows/release.yml@466e1433855584b2768858f3ef9915d1a2a81cd1
-    secrets:
-      CHANGESETS_PAT: ${{ secrets.ACTIONS_PAT }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build package
+        run: npm run build
+      
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
